@@ -27,6 +27,9 @@
     ]
   },
   "projects": {
+    "gateway-api": {
+      "tags": []
+    },
     "gateway-web": {
       "tags": []
     },

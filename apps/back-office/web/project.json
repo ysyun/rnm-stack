@@ -1,0 +1,78 @@
+{
+  "root": "apps/back-office/web",
+  "sourceRoot": "apps/back-office/web/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/back-office/web",
+        "index": "apps/back-office/web/src/index.html",
+        "main": "apps/back-office/web/src/main.tsx",
+        "polyfills": "apps/back-office/web/src/polyfills.ts",
+        "tsConfig": "apps/back-office/web/tsconfig.app.json",
+        "assets": [
+          "apps/back-office/web/src/favicon.ico",
+          "apps/back-office/web/src/assets"
+        ],
+        "styles": ["apps/back-office/web/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/back-office/web/src/environments/environment.ts",
+              "with": "apps/back-office/web/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "back-office-web:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "back-office-web:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/back-office/web/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/back-office/web"],
+      "options": {
+        "jestConfig": "apps/back-office/web/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

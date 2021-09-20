@@ -1,0 +1,78 @@
+{
+  "root": "apps/dashboard/web",
+  "sourceRoot": "apps/dashboard/web/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/web:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/dashboard/web",
+        "index": "apps/dashboard/web/src/index.html",
+        "main": "apps/dashboard/web/src/main.tsx",
+        "polyfills": "apps/dashboard/web/src/polyfills.ts",
+        "tsConfig": "apps/dashboard/web/tsconfig.app.json",
+        "assets": [
+          "apps/dashboard/web/src/favicon.ico",
+          "apps/dashboard/web/src/assets"
+        ],
+        "styles": ["apps/dashboard/web/src/styles.scss"],
+        "scripts": [],
+        "webpackConfig": "@nrwl/react/plugins/webpack"
+      },
+      "configurations": {
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/dashboard/web/src/environments/environment.ts",
+              "with": "apps/dashboard/web/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "extractCss": true,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/web:dev-server",
+      "options": {
+        "buildTarget": "dashboard-web:build",
+        "hmr": true
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "dashboard-web:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/dashboard/web/**/*.{ts,tsx,js,jsx}"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/dashboard/web"],
+      "options": {
+        "jestConfig": "apps/dashboard/web/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}

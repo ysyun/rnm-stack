@@ -1,0 +1,51 @@
+{
+  "root": "apps/gateway/api",
+  "sourceRoot": "apps/gateway/api/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/node:build",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/gateway/api",
+        "main": "apps/gateway/api/src/main.ts",
+        "tsConfig": "apps/gateway/api/tsconfig.app.json",
+        "assets": ["apps/gateway/api/src/assets"]
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "extractLicenses": true,
+          "inspect": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/gateway/api/src/environments/environment.ts",
+              "with": "apps/gateway/api/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/node:execute",
+      "options": {
+        "buildTarget": "gateway-api:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/gateway/api/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/gateway/api"],
+      "options": {
+        "jestConfig": "apps/gateway/api/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
