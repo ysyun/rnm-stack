@@ -12,7 +12,11 @@
     "dashboard/web-e2e": "apps/dashboard/web-e2e",
     "gateway-api": "apps/gateway/api",
     "gateway-web": "apps/gateway/web",
-    "gateway/web-e2e": "apps/gateway/web-e2e"
+    "gateway/web-e2e": "apps/gateway/web-e2e",
+    "page": "libs/page",
+    "ui": "libs/ui",
+    "domain": "libs/domain",
+    "shared": "libs/shared"
   },
   "cli": {
     "defaultCollection": "@nrwl/react"

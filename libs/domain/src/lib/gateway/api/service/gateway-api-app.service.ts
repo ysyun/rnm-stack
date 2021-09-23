@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AppService {
+export class GatewayApiAppService {
   getData(): { message: string } {
-    return { message: 'Welcome to dashboard/api!' };
+    return { message: 'Welcome to gateway/api in libs' };
   }
 }

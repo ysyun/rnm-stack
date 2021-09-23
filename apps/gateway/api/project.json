@@ -10,7 +10,7 @@
         "outputPath": "dist/apps/gateway/api",
         "main": "apps/gateway/api/src/main.ts",
         "tsConfig": "apps/gateway/api/tsconfig.app.json",
-        "assets": ["apps/gateway/api/src/assets"]
+        "assets": ["apps/gateway/api/src/public"]
       },
       "configurations": {
         "production": {

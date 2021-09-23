@@ -5,14 +5,25 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "build:gateway-api": "nx build gateway-api",
+    "start:gateway-api": "nx serve gateway-api",
+    "build:dashboard-api": "nx build dashboard-api",
+    "start:dashboard-api": "nx serve dashboard-api",
+    "build:configuration-api": "nx build configuration-api",
+    "start:configuration-api": "nx serve configuration-api",
+    "build:back-office-api": "nx build back-office-api",
+    "start:back-office-api": "nx serve back-office-api"
   },
   "private": true,
   "dependencies": {
-    "@nestjs/common": "^7.0.0",
-    "@nestjs/core": "^7.0.0",
-    "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/common": "^7.6.18",
+    "@nestjs/core": "^7.6.18",
+    "@nestjs/microservices": "^7.6.18",
+    "@nestjs/platform-express": "^7.6.18",
+    "@nestjs/serve-static": "^2.2.2",
     "core-js": "^3.6.5",
+    "http-proxy-middleware": "^2.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-router-dom": "5.2.0",
@@ -22,8 +33,8 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@nestjs/schematics": "^7.0.0",
-    "@nestjs/testing": "^7.0.0",
+    "@nestjs/schematics": "^7.3.1",
+    "@nestjs/testing": "^7.6.18",
     "@nrwl/cli": "12.9.0",
     "@nrwl/cypress": "12.9.0",
     "@nrwl/eslint-plugin-nx": "12.9.0",
@@ -54,6 +65,7 @@
     "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
     "jest": "27.0.3",
+    "npm-run-all": "^4.1.5",
     "prettier": "^2.3.1",
     "ts-jest": "27.0.3",
     "typescript": "~4.3.5"

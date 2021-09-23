@@ -1,0 +1,6 @@
+{
+  "HTTP_PORT": 8003,
+  "TCP_HOST": "0.0.0.0",
+  "TCP_PORT": 8300,
+  "GLOBAL_API_PREFIX": "/api"
+}

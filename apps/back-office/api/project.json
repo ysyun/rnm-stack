@@ -10,7 +10,7 @@
         "outputPath": "dist/apps/back-office/api",
         "main": "apps/back-office/api/src/main.ts",
         "tsConfig": "apps/back-office/api/tsconfig.app.json",
-        "assets": ["apps/back-office/api/src/assets"]
+        "assets": ["apps/back-office/api/src/public"]
       },
       "configurations": {
         "production": {

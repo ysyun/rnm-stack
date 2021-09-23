@@ -1,0 +1,15 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build:dashboard-api",
+      "type": "shell",
+      "command": "npm run build:dashboard-api"
+    },
+    {
+      "label": "build:gateway-api",
+      "type": "shell",
+      "command": "npm run build:gateway-api"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Dashboard",
+      "program": "${workspaceFolder}/apps/dashboard/api/src/main.ts",
+      "preLaunchTask": "build:dashboard-api",
+      "outFiles": ["${workspaceFolder}/dist/apps/dashboard/api/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Gateway",
+      "program": "${workspaceFolder}/apps/gateway/api/src/main.ts",
+      "preLaunchTask": "build:gateway-api",
+      "outFiles": ["${workspaceFolder}/dist/apps/gateway/api/**/*.js"]
+    },
+    {
+      "name": "Gateway",
+      "request": "launch",
+      "runtimeArgs": ["run", "build:gateway-api"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    },
+    {
+      "name": "Dashboard",
+      "request": "launch",
+      "runtimeArgs": ["run", "build:dashboard-api"],
+      "runtimeExecutable": "npm",
+      "skipFiles": ["<node_internals>/**"],
+      "type": "pwa-node"
+    }
+  ]
+}

@@ -8,5 +8,5 @@
     "target": "es2015"
   },
   "exclude": ["**/*.spec.ts"],
-  "include": ["**/*.ts"]
+  "include": ["**/*.ts", "../../gateway/api/src/app/dashboard/test.service.ts"]
 }

@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class AppService {
+export class BackOfficeApiAppService {
   getData(): { message: string } {
-    return { message: 'Welcome to configuration/api!' };
+    return { message: 'Welcome to back-office/api in libs' };
   }
 }
