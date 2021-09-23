@@ -10,7 +10,7 @@
         "outputPath": "dist/apps/dashboard/api",
         "main": "apps/dashboard/api/src/main.ts",
         "tsConfig": "apps/dashboard/api/tsconfig.app.json",
-        "assets": ["apps/dashboard/api/src/public"]
+        "assets": ["apps/dashboard/api/src/environments", "apps/dashboard/api/src/public"]
       },
       "configurations": {
         "production": {

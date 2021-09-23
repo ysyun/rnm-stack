@@ -12,10 +12,7 @@
         "main": "apps/gateway/web/src/main.tsx",
         "polyfills": "apps/gateway/web/src/polyfills.ts",
         "tsConfig": "apps/gateway/web/tsconfig.app.json",
-        "assets": [
-          "apps/gateway/web/src/favicon.ico",
-          "apps/gateway/web/src/assets"
-        ],
+        "assets": ["apps/gateway/web/src/favicon.ico", "apps/gateway/web/src/assets"],
         "styles": ["apps/gateway/web/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"

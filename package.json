@@ -19,7 +19,8 @@
   "dependencies": {
     "@nestjs/common": "^7.6.18",
     "@nestjs/core": "^7.6.18",
-    "@nestjs/microservices": "^7.6.18",
+    "@nestjs/microservices": "7.6.18",
+    "@nestjs/websockets": "^7.6.18",
     "@nestjs/platform-express": "^7.6.18",
     "@nestjs/serve-static": "^2.2.2",
     "core-js": "^3.6.5",
@@ -30,7 +31,21 @@
     "reflect-metadata": "^0.1.13",
     "regenerator-runtime": "0.13.7",
     "rxjs": "~6.6.3",
-    "tslib": "^2.0.0"
+    "tslib": "^2.0.0",
+    "amqp-connection-manager": "*",
+    "amqplib": "*",
+    "cache-manager": "*",
+    "grpc": "*",
+    "kafkajs": "*",
+    "mqtt": "*",
+    "nats": "*",
+    "redis": "*",
+    "aws-sdk": "*",
+    "mock-aws-s3": "*",
+    "class-transformer": "*",
+    "class-validator": "*",
+    "fastify-static": "*",
+    "nock": "*"
   },
   "devDependencies": {
     "@nestjs/schematics": "^7.3.1",
