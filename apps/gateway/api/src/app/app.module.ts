@@ -3,6 +3,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
 import { GatewayApiAppService } from '@rnm/domain';
+import { PrismaClientService } from '@rnm/shared';
 
 import { AppController } from './app.controller';
 import { DashboardModule } from './dashboard/dashboard.module';
@@ -19,6 +20,6 @@ import { DashboardModule } from './dashboard/dashboard.module';
     DashboardModule
   ],
   controllers: [AppController],
-  providers: [GatewayApiAppService]
+  providers: [GatewayApiAppService, PrismaClientService]
 })
 export class AppModule { }
