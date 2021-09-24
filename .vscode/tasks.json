@@ -7,6 +7,16 @@
       "command": "npm run build:dashboard-api"
     },
     {
+      "label": "build:configuration-api",
+      "type": "shell",
+      "command": "npm run build:configuration-api"
+    },
+    {
+      "label": "build:back-office-api",
+      "type": "shell",
+      "command": "npm run build:back-office-api"
+    },
+    {
       "label": "build:gateway-api",
       "type": "shell",
       "command": "npm run build:gateway-api"

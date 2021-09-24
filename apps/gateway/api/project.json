@@ -18,6 +18,7 @@
           "extractLicenses": true,
           "inspect": false,
           "externalDependencies": "none",
+          "sourceMap": false,
           "fileReplacements": [
             {
               "replace": "apps/gateway/api/src/environments/environment.ts",
