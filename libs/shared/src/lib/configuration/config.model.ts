@@ -16,8 +16,8 @@ export interface GatewayConfiguration {
 }
 
 export interface AuthConfig {
-  secret: string;
-  expiredOn?: string;
+  SECRET: string;
+  EXPIRED_ON?: string;
 }
 
 export interface OrmConfiguration {

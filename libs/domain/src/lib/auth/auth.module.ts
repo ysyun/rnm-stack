@@ -15,8 +15,8 @@ const config: GatewayConfiguration = loadConfigJson();
   imports: [
     PassportModule,
     JwtModule.register({
-      secret: config.AUTH?.secret,
-      signOptions: { expiresIn: config.AUTH?.expiredOn },
+      secret: config.AUTH?.SECRET,
+      signOptions: { expiresIn: config.AUTH?.EXPIRED_ON },
     }),
     EntitiesModule
   ],
