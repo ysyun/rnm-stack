@@ -1,10 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { NestMiddleware, Logger } from '@nestjs/common';
-import { loadGatewayConfiguration } from '@rnm/shared';
+import { GatewayConfiguration, loadConfigJson } from '@rnm/shared';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 export class DashboardReverseProxyMiddleware implements NestMiddleware {
-  private config = loadGatewayConfiguration();
+  private config: GatewayConfiguration = loadConfigJson();
   private proxyOptions = {
     target: this.config.DASHBOARD.REVERSE_ADDRESS,
     secure: false,

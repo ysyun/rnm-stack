@@ -2,7 +2,7 @@ import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 
-import { loadMicroServiceConfiguration } from '@rnm/shared';
+import { loadConfigJson, MicroServiceConfiguration } from '@rnm/shared';
 
 import { AppModule } from './app/app.module';
 
@@ -10,7 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Load config.json file
-  const config = loadMicroServiceConfiguration();
+  const config: MicroServiceConfiguration = loadConfigJson();
 
   // // Setup tcp server for api
   const options: MicroserviceOptions = {

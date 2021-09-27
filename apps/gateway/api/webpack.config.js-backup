@@ -1,0 +1,32 @@
+module.exports = () => {
+  const CompressionPlugin = require(`compression-webpack-plugin`);
+  const BrotliPlugin = require(`brotli-webpack-plugin`);
+  const path = require('path');
+  const DIST_DIR = path.resolve(__dirname, '../../../dist');
+
+  return {
+    // entry: DIST_DIR + '/apps/gateway/api/main.js',
+    // output: {
+    //   path: DIST_DIR + '/apps/gateway/api',
+    //   filename: 'gateway.js',
+    //   publicPath: '/apps/gateway/api/',
+    // },
+    mode: 'none',
+    optimization: {
+      minimize: true,
+    },
+    // plugins: [
+    //   new BrotliPlugin({
+    //     asset: '[fileWithoutExt].[ext].br',
+    //     test: /\.(js|css|html|svg|txt|eot|otf|ttf|gif)$/,
+    //   }),
+    //   new CompressionPlugin({
+    //     filename: '[path].gz[query]',
+    //     algorithm: 'gzip',
+    //     test: /\.js$|\.css$|\.html$|\.eot?.+$|\.ttf?.+$|\.woff?.+$|\.svg?.+$/,
+    //     threshold: 10240,
+    //     minRatio: 0.8,
+    //   }),
+    // ],
+  };
+};
