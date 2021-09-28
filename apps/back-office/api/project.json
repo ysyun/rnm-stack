@@ -21,6 +21,14 @@
             {
               "replace": "apps/back-office/api/src/environments/environment.ts",
               "with": "apps/back-office/api/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "apps/back-office/api/src/environments/config.ts",
+              "with": "apps/back-office/api/src/environments/config.prod.ts"
+            },
+            {
+              "replace": "apps/back-office/api/src/environments/orm-config.ts",
+              "with": "apps/back-office/api/src/environments/orm-config.prod.ts"
             }
           ]
         }

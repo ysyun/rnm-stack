@@ -55,13 +55,16 @@ class OrmConfigService {
  * Singleton Config
  */
 const ormEnv: any = loadOrmConfiguration();
-const ormConfigService = new OrmConfigService(ormEnv)
-  .ensureValues([
-    'HOST',
-    'PORT',
-    'USER',
-    'PASSWORD',
-    'DATABASE'
-  ]);
+let ormConfigService: any;
+if (ormEnv) {
+  ormConfigService = new OrmConfigService(ormEnv)
+    .ensureValues([
+      'HOST',
+      'PORT',
+      'USER',
+      'PASSWORD',
+      'DATABASE'
+    ]);
+}
 
 export { ormConfigService };

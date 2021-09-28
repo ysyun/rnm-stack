@@ -8,8 +8,13 @@ export const loadConfigJson = (message = '[LOAD] config.json file'): MicroServic
   return JSON.parse(jsonFile);
 }
 
-export const loadOrmConfiguration = (message = '[LOAD] orm-config.json file'): OrmConfiguration => {
+export const loadOrmConfiguration = (message = '[LOAD] orm-config.json file'): OrmConfiguration | undefined => {
   console.log(`${message}:`, `${__dirname}/environments/orm-config.json`);
-  const jsonFile = fs.readFileSync(join(__dirname, 'environments', 'orm-config.json'), 'utf8');
-  return JSON.parse(jsonFile);
+  try {
+    const jsonFile = fs.readFileSync(join(__dirname, 'environments', 'orm-config.json'), 'utf8');
+    return JSON.parse(jsonFile);
+  } catch (e) {
+    console.log(`CAN NOT ${message}:`, `${__dirname}/environments/orm-config.json`);
+    return undefined;
+  }
 }

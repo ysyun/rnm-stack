@@ -21,6 +21,14 @@
             {
               "replace": "apps/configuration/api/src/environments/environment.ts",
               "with": "apps/configuration/api/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "apps/configuration/api/src/environments/config.ts",
+              "with": "apps/configuration/api/src/environments/config.prod.ts"
+            },
+            {
+              "replace": "apps/configuration/api/src/environments/orm-config.ts",
+              "with": "apps/configuration/api/src/environments/orm-config.prod.ts"
             }
           ]
         }

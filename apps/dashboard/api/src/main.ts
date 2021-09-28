@@ -22,7 +22,7 @@ async function bootstrap() {
 
   // // Setup http server for web
   const httpPort = config.HTTP_PORT || process.env.HTTP_PORT || 8001;
-  const globalPrefix = config.GLOBAL_API_PREFIX || '/api';
+  const globalPrefix = config.GLOBAL_API_PREFIX || '/dashboard/api';
   app.setGlobalPrefix(globalPrefix);
   await app.listen(httpPort, () => {
     Logger.log(`Listening at http://localhost:${httpPort}${globalPrefix}`);

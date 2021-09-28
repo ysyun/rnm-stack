@@ -1,8 +1,9 @@
 import { join } from 'path';
-import { Module } from '@nestjs/common';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { DashboardApiAppService } from '@rnm/domain';
+import { LoggerMiddleware } from '@rnm/shared';
 
 import { AppController } from './app.controller';
 
@@ -10,10 +11,17 @@ import { AppController } from './app.controller';
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, 'public'),
-      exclude: ['/api*'],
+      exclude: ['/api*', '/dashboard/api*'],
     })
   ],
   controllers: [AppController],
   providers: [DashboardApiAppService],
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  // middleware 적용
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(LoggerMiddleware)
+      .forRoutes({ path: '*', method: RequestMethod.ALL });
+  }
+}

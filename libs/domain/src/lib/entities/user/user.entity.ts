@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 
 @Entity('user_iot')
 export class UserEntity {
@@ -8,7 +8,7 @@ export class UserEntity {
   @Column()
   username!: string;
 
-  @Column()
+  @Column({ select: false })
   password!: string;
 
   @Column()
@@ -20,10 +20,13 @@ export class UserEntity {
   @Column()
   lastName!: string;
 
-  @Column({ default: false })
-  isActive!: boolean;
-
   // USER, ADMIN, SUPER
   @Column({ default: 'USER' })
   role!: string;
+
+  @CreateDateColumn()
+  createdAt?: Date;
+
+  @CreateDateColumn()
+  updatedAt?: Date;
 }

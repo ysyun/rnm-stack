@@ -1,14 +1,16 @@
 import { join } from 'path';
 import { Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getMetadataArgsStorage } from 'typeorm';
 
 import { GatewayApiAppService, EntitiesModule, AuthModule } from '@rnm/domain';
-import { ormConfigService } from '@rnm/shared';
-// import { PrismaClientService } from '@rnm/shared';
+import { GlobalExceptionFilter, ormConfigService } from '@rnm/shared';
 
 import { DashboardModule } from './dashboard/microservice/dashboard.module';
+import { ConfigurationModule } from './configuration/microservice/configuration.module';
+import { BackOfficeModule } from './back-office/microservice/back-office.module';
 import { AppController } from './app.controller';
 import { AuthController } from './auth/auth.controller';
 import { UserController } from './user/user.controller';
@@ -31,6 +33,8 @@ import { UserController } from './user/user.controller';
     EntitiesModule,
     // MicroService
     DashboardModule,
+    ConfigurationModule,
+    BackOfficeModule,
     // Auth
     AuthModule
   ],
@@ -39,7 +43,13 @@ import { UserController } from './user/user.controller';
     AuthController,
     UserController
   ],
-  providers: [GatewayApiAppService]
-  // providers: [GatewayApiAppService, PrismaClientService]
+  providers: [
+    GatewayApiAppService,
+    // Global Exception Filter
+    {
+      provide: APP_FILTER,
+      useClass: GlobalExceptionFilter,
+    },
+  ]
 })
 export class AppModule { }
