@@ -3,20 +3,17 @@
   "projects": {
     "back-office-api": "apps/back-office/api",
     "back-office-web": "apps/back-office/web",
-    "back-office/web-e2e": "apps/back-office/web-e2e",
     "configuration-api": "apps/configuration/api",
     "configuration-web": "apps/configuration/web",
-    "configuration/web-e2e": "apps/configuration/web-e2e",
     "dashboard-api": "apps/dashboard/api",
     "dashboard-web": "apps/dashboard/web",
-    "dashboard/web-e2e": "apps/dashboard/web-e2e",
+    "domain": "libs/domain",
     "gateway-api": "apps/gateway/api",
     "gateway-web": "apps/gateway/web",
-    "gateway/web-e2e": "apps/gateway/web-e2e",
+    "model": "libs/model",
     "page": "libs/page",
-    "ui": "libs/ui",
-    "domain": "libs/domain",
-    "shared": "libs/shared"
+    "shared": "libs/shared",
+    "ui": "libs/ui"
   },
   "cli": {
     "defaultCollection": "@nrwl/react"

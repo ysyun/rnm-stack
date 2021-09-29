@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import * as cookieParser from 'cookie-parser';
 import * as helmet from 'helmet';
 
 import { GatewayConfiguration, loadConfigJson } from '@rnm/shared';
@@ -12,6 +13,7 @@ async function bootstrap() {
   // http security checker
   // https://github.com/helmetjs/helmet#how-it-works
   app.use(helmet());
+  app.use(cookieParser());
 
   // Load config.json file
   const config: GatewayConfiguration = loadConfigJson();

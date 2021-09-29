@@ -1,8 +1,9 @@
 {
   "HTTP_PORT": 8000,
   "AUTH": {
-    "secret": "you_should_define",
-    "expiredOn": "6h"
+    "SECRET": "iot_secret_auth",
+    "EXPIRED_ON": "1d",
+    "REFRESH_EXPIRED_ON": "7d"
   },
   "DASHBOARD": {
     "REVERSE_CONTEXT": "dashboard",

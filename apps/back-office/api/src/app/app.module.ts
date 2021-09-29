@@ -2,7 +2,7 @@ import { join } from 'path';
 import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
 import { ServeStaticModule } from '@nestjs/serve-static';
 
-import { BackOfficeApiAppService } from '@rnm/domain';
+import { AuthMiddleware, BackOfficeApiAppService } from '@rnm/domain';
 import { LoggerMiddleware } from '@rnm/shared';
 
 import { AppController } from './app.controller';
@@ -21,7 +21,7 @@ export class AppModule implements NestModule {
   // middleware 적용
   configure(consumer: MiddlewareConsumer) {
     consumer
-      .apply(LoggerMiddleware)
+      .apply(AuthMiddleware, LoggerMiddleware)
       .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }

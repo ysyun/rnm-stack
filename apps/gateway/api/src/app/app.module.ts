@@ -1,12 +1,12 @@
 import { join } from 'path';
-import { Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
+import { MiddlewareConsumer, Module, NestModule, RequestMethod } from '@nestjs/common';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { getMetadataArgsStorage } from 'typeorm';
 
-import { GatewayApiAppService, EntitiesModule, AuthModule } from '@rnm/domain';
-import { GlobalExceptionFilter, ormConfigService } from '@rnm/shared';
+import { GatewayApiAppService, EntitiesModule, AuthModule, AuthMiddleware } from '@rnm/domain';
+import { GlobalExceptionFilter, ormConfigService, RolesGuard } from '@rnm/shared';
 
 import { DashboardModule } from './dashboard/microservice/dashboard.module';
 import { ConfigurationModule } from './configuration/microservice/configuration.module';
@@ -20,7 +20,7 @@ import { UserController } from './user/user.controller';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, 'public'),
       exclude: [
-        '/auth/*',
+        '/api/auth*',
         '/api/gateway*', '/api/dashboard*', '/api/configuration*', '/api/back-office*',
         '/dashboard*', '/configuration*', '/back-office*'
       ],
@@ -39,8 +39,8 @@ import { UserController } from './user/user.controller';
     AuthModule
   ],
   controllers: [
-    AppController,
     AuthController,
+    AppController,
     UserController
   ],
   providers: [
@@ -50,6 +50,20 @@ import { UserController } from './user/user.controller';
       provide: APP_FILTER,
       useClass: GlobalExceptionFilter,
     },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
   ]
 })
-export class AppModule { }
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer
+      .apply(AuthMiddleware)
+      .forRoutes(...[
+        { path: '/dashboard*', method: RequestMethod.ALL },
+        { path: '/configuration*', method: RequestMethod.ALL },
+        { path: '/back-office*', method: RequestMethod.ALL },
+      ]);
+  }
+}

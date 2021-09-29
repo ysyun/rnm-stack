@@ -5,19 +5,22 @@ export interface MicroServiceConfiguration {
   TCP_HOST?: string;
   TCP_PORT?: number,
   GLOBAL_API_PREFIX?: string;
+  AUTH?: AuthConfig;
 }
 
 export interface GatewayConfiguration {
   HTTP_PORT?: number,
-  AUTH?: AuthConfig;
   DASHBOARD?: MicroServiceConfiguration;
   CONFIGURATION?: MicroServiceConfiguration;
   BACK_OFFICE?: MicroServiceConfiguration;
+  AUTH?: AuthConfig;
 }
 
 export interface AuthConfig {
-  SECRET: string;
+  SECRET?: string;
   EXPIRED_ON?: string;
+  REFRESH_SECRET?: string;
+  REFRESH_EXPIRED_ON?: string;
 }
 
 export interface OrmConfiguration {

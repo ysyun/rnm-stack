@@ -1,11 +1,11 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { NullPointerException } from '@rnm/shared';
 import { getConnection, getManager, Repository, Transaction, TransactionRepository } from 'typeorm';
 
-import { bcryptHash } from '../../utilties/bcrypt.util';
+import { bcryptCompare, bcryptHash, NullPointerException } from '@rnm/shared';
+import { User } from '@rnm/model';
+
 import { UserEntity } from './user.entity';
-import { User } from './user.model';
 
 @Injectable()
 export class UserService {
@@ -22,7 +22,7 @@ export class UserService {
     const queryRunner = connection.createQueryRunner();
     await queryRunner.connect();
 
-    data.password = await bcryptHash(data.password);
+    data.password = await bcryptHash(data.password as string);
 
     await queryRunner.startTransaction();
     let savedUser;
@@ -72,7 +72,7 @@ export class UserService {
   @Transaction()
   async deleteOne(id: string, @TransactionRepository(UserEntity) entityRepository?: Repository<UserEntity>): Promise<any> {
     if (!entityRepository) {
-      return new NullPointerException('There is no transaction respository of user-entity.');
+      return new NullPointerException('There is no transaction respository.');
     }
     return entityRepository.delete(id);
   }
@@ -81,8 +81,49 @@ export class UserService {
     return this.repository.find();
   }
 
-  findOne(username: string): Promise<User | undefined> {
-    return this.repository.findOne({ username });
+  async setCurrentRefreshToken(refreshToken: string, id: number) {
+    const currentHashedRefreshToken = await await bcryptHash(refreshToken);
+    await this.repository.update(id, {
+      currentHashedRefreshToken
+    });
+  }
+
+  async getUserIfRefreshTokenMatches(refreshToken: string, id: number): Promise<User | undefined> {
+    const user = await this.findOneById(id);
+
+    const isRefreshTokenMatching = await bcryptCompare(
+      refreshToken,
+      user.currentHashedRefreshToken as string
+    );
+
+    if (isRefreshTokenMatching) {
+      return user;
+    }
+    return;
+  }
+
+  async removeRefreshToken(id: number) {
+    return this.repository.update(id, {
+      currentHashedRefreshToken: undefined
+    });
+  }
+
+  async findOne(username: string): Promise<User | undefined> {
+    const user = this.repository.findOne({
+      where: { username }
+    });
+    if (user) {
+      return user;
+    }
+    throw new HttpException('User with this id does not exist', HttpStatus.NOT_FOUND);
+  }
+
+  async findOneById(id: number): Promise<User> {
+    const user = await this.repository.findOne({ id });
+    if (user) {
+      return user;
+    }
+    throw new HttpException('User with this id does not exist', HttpStatus.NOT_FOUND);
   }
 
 }

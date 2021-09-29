@@ -24,7 +24,15 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["plugin:@nrwl/nx/typescript"],
-      "rules": {}
+      "rules": {
+        "quotemark": [true, "single"],
+        "member-access": [false],
+        "ordered-imports": [false],
+        "max-line-length": [true, 150],
+        "member-ordering": [false],
+        "interface-name": [false],
+        "object-literal-sort-keys": false
+      }
     },
     {
       "files": ["*.js", "*.jsx"],

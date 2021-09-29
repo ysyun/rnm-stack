@@ -5,28 +5,34 @@ export class UserEntity {
   @PrimaryGeneratedColumn()
   id!: number;
 
-  @Column()
+  @Column({ unique: true, length: 50 })
   username!: string;
 
-  @Column({ select: false })
+  @Column()
   password!: string;
 
-  @Column()
+  @Column({ length: 255 })
   email!: string;
 
-  @Column()
+  @Column({ name: 'first_name', length: 100 })
   firstName!: string;
 
-  @Column()
+  @Column({ name: 'last_name', length: 100 })
   lastName!: string;
 
-  // USER, ADMIN, SUPER
-  @Column({ default: 'USER' })
+  @Column({ default: 'GUEST' })
   role!: string;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'created_at', select: false })
   createdAt?: Date;
 
-  @CreateDateColumn()
+  @CreateDateColumn({ name: 'updated_at', select: false })
   updatedAt?: Date;
+
+  @Column({
+    name: 'current_hashed_refresh_token',
+    nullable: true
+  })
+  currentHashedRefreshToken?: string;
+
 }

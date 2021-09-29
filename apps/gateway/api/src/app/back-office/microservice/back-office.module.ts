@@ -4,7 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GatewayConfiguration, loadConfigJson } from '@rnm/shared';
 
 import { BackOfficeController } from '../back-office.controller';
-import { BackOfficeReverseProxyMiddleware } from './back-office.proxy';
+import { BackOfficeReverseProxyMiddleware } from './back-office-proxy.middleware';
 import { BackOfficeService } from '../back-office.service';
 
 const config: GatewayConfiguration = loadConfigJson();

@@ -1,10 +1,13 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 
-import { User } from '../entities/user/user.model';
+import { TokenPayload } from '@rnm/model';
+import { bcryptCompare, loadConfigJson } from '@rnm/shared';
+
 import { UserService } from '../entities/user/user.service';
-import { bcryptCompare } from '../utilties/bcrypt.util';
+
+const config: any = loadConfigJson();
 
 @Injectable()
 export class AuthService {
@@ -23,17 +26,40 @@ export class AuthService {
     return null;
   }
 
-  async login(loginUser: User): Promise<any> {
-    const user = await this.userService.findOne(loginUser.username);
-    if (user) {
-      const payload = { username: user.username, sub: user.id, email: user.email, role: user.role };
-      return {
-        access_token: this.jwtService.sign(payload),
-      };
+  getCookieWithJwtAccessToken(payload: TokenPayload, hasAuthorization = false) {
+    const token = this.jwtService.sign(payload, {
+      secret: config?.AUTH?.SECRET || 'iot_app',
+      expiresIn: config?.AUTH?.EXPIRED_ON || '1d'
+    });
+    if (hasAuthorization) {
+      return [`LOGIN_TOKEN=${token}; HttpOnly; Path=/; Max-Age=${config?.AUTH?.EXPIRED_ON}`, `Authorization=${token}; HttpOnly; Path=/; Max-Age=${config?.AUTH?.EXPIRED_ON}`];
     } else {
-      throw new UnauthorizedException({
-        error: 'There is no user'
-      });
+      return [`LOGIN_TOKEN=${token}; HttpOnly; Path=/; Max-Age=${config?.AUTH?.EXPIRED_ON}`];
     }
+  }
+
+  getCookieWithJwtRefreshToken(payload: TokenPayload) {
+    const token = this.jwtService.sign(payload, {
+      secret: config?.AUTH?.REFRESH_SECRET || 'io_app_refresh',
+      expiresIn: config?.AUTH?.REFRESH_EXPIRED_ON || '7d'
+    });
+    const cookie = `REFRESH_LOGIN_TOKEN=${token}; HttpOnly; Path=/; Max-Age=${config?.AUTH?.REFRESH_EXPIRED_ON}`;
+    return {
+      cookie,
+      token
+    }
+  }
+
+  getCookieWithLoginUsername(payload: TokenPayload) {
+    return `LOGIN_USER_ID=${payload.username}; HttpOnly; Path=/; Max-Age=${config?.AUTH?.REFRESH_EXPIRED_ON}`;
+  }
+
+  getCookiesForLogOut() {
+    return [
+      'LOGIN_TOKEN=; HttpOnly; Path=/; Max-Age=0',
+      'Authorization=; HttpOnly; Path=/; Max-Age=0',
+      'REFRESH_LOGIN_TOKEN=; HttpOnly; Path=/; Max-Age=0',
+      'LOGIN_USER_ID=; HttpOnly; Path=/; Max-Age=0'
+    ];
   }
 }

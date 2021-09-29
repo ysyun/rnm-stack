@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Req } from '@nestjs/common';
 import { MessagePattern } from '@nestjs/microservices';
 
 import { DashboardApiAppService } from '@rnm/domain';
@@ -9,7 +9,8 @@ export class AppController {
   constructor(private readonly appService: DashboardApiAppService) { }
 
   @Get()
-  getData() {
+  getData(@Req() req) {
+    console.log('req.headers:', req.headers);
     return this.appService.getData();
   }
 

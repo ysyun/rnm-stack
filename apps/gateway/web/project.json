@@ -46,7 +46,9 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "gateway-web:build",
-        "hmr": true
+        "hmr": true,
+        "proxyConfig": "apps/gateway/web/proxy.conf.json",
+        "port": 7000
       },
       "configurations": {
         "production": {

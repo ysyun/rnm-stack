@@ -1,0 +1,27 @@
+.login_container {
+  height: 100vh;
+  min-height: 800px;
+  background: center center/cover no-repeat fixed;
+  background-image: url(/assets/images/login.jpg);
+  margin: 0;
+  padding: 0;
+  font-family: SpoqaHanSans, Helvetica, AppleSDGothicNeo-Thin, sans-serif;
+  box-sizing: content-box;
+  line-height: 1.3em;
+  .center_bg {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    margin-left: -255px;
+    width: 510px;
+    height: 100vh;
+    min-height: 800px;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    z-index: 1;
+    box-sizing: border-box;
+    .form_container {
+      height: 100vh;
+    }
+  }
+}

@@ -4,7 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { GatewayConfiguration, loadConfigJson } from '@rnm/shared';
 
 import { DashboardController } from '../dashboard.controller';
-import { DashboardReverseProxyMiddleware } from './dashboard.proxy';
+import { DashboardReverseProxyMiddleware } from './dashboard-proxy.middleware';
 import { DashboardService } from '../dashboard.service';
 
 const config: GatewayConfiguration = loadConfigJson();

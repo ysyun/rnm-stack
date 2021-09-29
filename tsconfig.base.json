@@ -15,10 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@rnm/page": ["libs/page/src/index.ts"],
-      "@rnm/ui": ["libs/ui/src/index.ts"],
       "@rnm/domain": ["libs/domain/src/index.ts"],
-      "@rnm/shared": ["libs/shared/src/index.ts"]
+      "@rnm/model": ["libs/model/src/index.ts"],
+      "@rnm/page": ["libs/page/src/index.ts"],
+      "@rnm/shared": ["libs/shared/src/index.ts"],
+      "@rnm/ui": ["libs/ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,20 @@
+{
+  "/gateway/*": {
+    "target": "http://localhost:8000",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true
+  },
+  "/api/gateway/*": {
+    "target": "http://localhost:8000",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true
+  },
+  "/api/auth/login": {
+    "target": "http://localhost:8000",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true
+  }
+}

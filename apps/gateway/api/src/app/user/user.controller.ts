@@ -1,7 +1,10 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
 
-import { JwtAuthGuard, User, UserService } from '@rnm/domain';
+import { JwtAuthGuard, UserService } from '@rnm/domain';
+import { User } from '@rnm/model';
+import { CookieInterceptor } from '@rnm/shared';
 
+// @UseInterceptors(CookieInterceptor)
 @Controller('api/gateway/user')
 export class UserController {
   constructor(

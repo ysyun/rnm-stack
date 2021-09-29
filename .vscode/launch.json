@@ -20,6 +20,14 @@
     {
       "type": "node",
       "request": "launch",
+      "name": "Gatewy Web",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "start:gateway-web"],
+      "outFiles": ["${workspaceFolder}/dist/apps/gateway/web/**/*.js"]
+    },
+    {
+      "type": "node",
+      "request": "launch",
       "name": "Configuration API",
       "program": "${workspaceFolder}/apps/configuration/api/src/main.ts",
       "preLaunchTask": "build:configuration-api",

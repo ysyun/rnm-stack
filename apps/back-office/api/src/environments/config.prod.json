@@ -2,5 +2,10 @@
   "HTTP_PORT": 8003,
   "TCP_HOST": "0.0.0.0",
   "TCP_PORT": 8300,
-  "GLOBAL_API_PREFIX": "/back-office/api"
+  "GLOBAL_API_PREFIX": "/back-office/api",
+  "AUTH": {
+    "SECRET": "iot_secret_auth",
+    "EXPIRED_ON": "1d",
+    "REFRESH_EXPIRED_ON": "7d"
+  }
 }

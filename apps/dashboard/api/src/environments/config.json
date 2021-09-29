@@ -2,5 +2,10 @@
   "HTTP_PORT": 8001,
   "TCP_HOST": "0.0.0.0",
   "TCP_PORT": 8100,
-  "GLOBAL_API_PREFIX": "/dashboard/api"
+  "GLOBAL_API_PREFIX": "/dashboard/api",
+  "AUTH": {
+    "SECRET": "iot_secret_auth",
+    "EXPIRED_ON": "1d",
+    "REFRESH_EXPIRED_ON": "7d"
+  }
 }
