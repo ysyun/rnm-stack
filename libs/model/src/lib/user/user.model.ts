@@ -15,8 +15,8 @@ export type LoginDto = Pick<User, 'username' | 'password'>;
 export type TokenPayload = Omit<User, 'password'>;
 
 export enum UserRole {
-  ADMIN = 'admin',
-  MANAGER = 'manager',
-  CUSTOMER = 'customer',
-  GUEST = 'guest',
+  ADMIN = 'ADMIN',
+  MANAGER = 'MANAGER',
+  CUSTOMER = 'CUSTOMER',
+  GUEST = 'GUEST',
 }

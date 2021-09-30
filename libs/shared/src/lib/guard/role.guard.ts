@@ -1,4 +1,4 @@
-import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
+import { Injectable, CanActivate, ExecutionContext, ForbiddenException } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
 
 const matchRoles = (roles: string[], userRoles: string) => {
@@ -10,12 +10,19 @@ export class RolesGuard implements CanActivate {
   constructor(private reflector: Reflector) { }
 
   canActivate(context: ExecutionContext): boolean {
-    const roles = this.reflector.get<string[]>('roles', context.getHandler());
-    if (!roles) {
+    const requiredRoles = this.reflector.getAllAndOverride<string[]>('roles', [
+      context.getHandler(),
+      context.getClass(),
+    ]);
+    if (!requiredRoles) {
       return true;
     }
+
     const req = context.switchToHttp().getRequest() as any;
     const user = req.user;
-    return matchRoles(roles, user.role);
+    if (!user) {
+      throw new ForbiddenException('User does not exist');
+    }
+    return matchRoles(requiredRoles, user.role);
   }
 }

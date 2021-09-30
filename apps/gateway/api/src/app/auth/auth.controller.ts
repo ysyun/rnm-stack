@@ -27,10 +27,14 @@ export class AuthController {
 
       // 반드시 req.res로 쿠키를 설정해야 한다.
       req.res.setHeader('Set-Cookie', [...accessTokenCookie, refreshTokenCookie, loginUsernameCookie]);
-      return payload;
+      return {
+        payload,
+        accessTokenCookie,
+        refreshTokenCookie
+      };
     } else {
       throw new UnauthorizedException({
-        error: 'There is no user.'
+        error: 'User does not exist'
       });
     }
   }

@@ -1,10 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 
 import { JwtAuthGuard, UserService } from '@rnm/domain';
-import { User } from '@rnm/model';
-import { CookieInterceptor } from '@rnm/shared';
+import { User, UserRole } from '@rnm/model';
+import { Roles } from '@rnm/shared';
 
-// @UseInterceptors(CookieInterceptor)
 @Controller('api/gateway/user')
 export class UserController {
   constructor(
@@ -13,6 +12,7 @@ export class UserController {
 
   @UseGuards(JwtAuthGuard)
   @Post()
+  @Roles(UserRole.ADMIN, UserRole.MANAGER)
   async create(@Body() data: User): Promise<User> {
     const savedUser = await this.service.create(data);
     if (!savedUser) {

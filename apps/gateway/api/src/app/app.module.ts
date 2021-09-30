@@ -64,6 +64,7 @@ export class AppModule implements NestModule {
         { path: '/dashboard*', method: RequestMethod.ALL },
         { path: '/configuration*', method: RequestMethod.ALL },
         { path: '/back-office*', method: RequestMethod.ALL },
+        { path: '/api*', method: RequestMethod.ALL },
       ]);
   }
 }

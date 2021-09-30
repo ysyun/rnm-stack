@@ -14,13 +14,17 @@ export class AuthMiddleware implements NestMiddleware {
       return;
     }
 
-    const bearerHeader = req.headers.authorization;
-    const accessToken = bearerHeader && bearerHeader.split(' ')[1];
-    let user;
+    // Not Use Bearer Token, Just Cookie
+    // const bearerHeader = req.headers.authorization;
+    // const accessToken = bearerHeader && bearerHeader.split(' ')[1];
+    // let user;
 
-    if (!bearerHeader || !accessToken) {
-      return next();
-    }
+    // if (!bearerHeader || !accessToken) {
+    //   return next();
+    // }
+
+    const accessToken = req?.cookies?.LOGIN_TOKEN;
+    let user;
 
     try {
       user = verify(
