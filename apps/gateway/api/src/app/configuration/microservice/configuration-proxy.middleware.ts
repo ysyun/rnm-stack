@@ -10,18 +10,18 @@ export class ConfigurationReverseProxyMiddleware implements NestMiddleware {
     ws: true,
     secure: false,
     changeOrigin: true,
-    cookieDomainRewrite: 'localhost',
-    onProxyReq: (proxyReq, req) => {
-      Object.keys(req.headers).forEach(function (key) {
-        proxyReq.setHeader(key, req.headers[key]);
-      });
-      if (req.user) {
-        const { username, role } = req.user;
-        proxyReq.setHeader('username', username);
-        proxyReq.setHeader('role', role);
+    cookieDomainRewrite: { '*': '' },
+    // onProxyReq: (proxyReq, req) => {
+    //   Object.keys(req.headers).forEach(function (key) {
+    //     proxyReq.setHeader(key, req.headers[key]);
+    //   });
+    //   if (req.user) {
+    //     const { username, role } = req.user;
+    //     proxyReq.setHeader('username', username);
+    //     proxyReq.setHeader('role', role);
 
-      }
-    },
+    //   }
+    // },
     // onProxyRes: (proxyRes, req, res) => {
     //   Object.keys(proxyRes.headers).forEach(function (key) {
     //     res.append(key, proxyRes.headers[key]);

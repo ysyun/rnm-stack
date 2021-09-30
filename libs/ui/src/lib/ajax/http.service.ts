@@ -9,6 +9,8 @@ import axios, {
 } from 'axios';
 import { Observable, Observer } from 'rxjs';
 
+import { notification } from 'antd';
+
 // sample url: https://jsonplaceholder.typicode.com/users
 interface RequestArgs {
   method: HttpMethod;
@@ -115,16 +117,15 @@ export class HttpService {
           observer.next(response.data);
         })
         .catch((error: AxiosError | Error) => {
-          this.abort();
-          observer.error(error);
+          this.abort(true);
           if (axios.isAxiosError(error)) {
-            console.log(error.code);
             if (error.response) {
-              console.log(error.response.data);
-              console.log(error.response.status);
-              console.log(error.response.headers);
+              const data: any = error.response?.data || {};
+              this.showNotification(`[${data.statusCode}] ${data.error}`, data.message);
+              console.log(`[${data.statusCode}] ${data.error}: ${data.message}`);
             }
           } else {
+            this.showNotification('Unknown Error', error.message);
             console.log(error.message);
           }
         })
@@ -133,6 +134,13 @@ export class HttpService {
           observer.complete();
         });
       return () => this.abort();
+    });
+  }
+
+  private showNotification(message: string, description: string): void {
+    notification.error({
+      message,
+      description
     });
   }
 }

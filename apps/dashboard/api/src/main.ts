@@ -1,6 +1,8 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
+import * as cookieParser from 'cookie-parser';
+import * as helmet from 'helmet';
 
 import { loadConfigJson, MicroServiceConfiguration } from '@rnm/shared';
 
@@ -19,6 +21,11 @@ async function bootstrap() {
   };
   app.connectMicroservice(options);
   app.startAllMicroservices();
+
+  // http security checker
+  // https://github.com/helmetjs/helmet#how-it-works
+  app.use(helmet());
+  app.use(cookieParser());
 
   // // Setup http server for web
   const httpPort = config.HTTP_PORT || process.env.HTTP_PORT || 8001;
