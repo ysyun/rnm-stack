@@ -5,13 +5,12 @@ import { LoginDto } from '@rnm/model';
 
 import styles from './login.module.scss';
 
-/* eslint-disable-next-line */
-export interface LoginProps {}
-
-export function Login(props: LoginProps) {
+export function Login() {
   const onFinish = (user: LoginDto) => {
     httpService.post<LoginDto>('/api/auth/login', user).subscribe((result: LoginDto) => {
       console.log('Success:', result);
+      // redirect index.html of dashboard application
+      location.href = '/dashboard';
     });
   };
 
