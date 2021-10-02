@@ -6,6 +6,8 @@ export interface MicroServiceConfiguration {
   TCP_PORT?: number,
   GLOBAL_API_PREFIX?: string;
   AUTH?: AuthConfig;
+  I18N_LANG?: string;
+  I18N_JSON_PATH?: string;
 }
 
 export interface GatewayConfiguration {
@@ -14,6 +16,8 @@ export interface GatewayConfiguration {
   CONFIGURATION?: MicroServiceConfiguration;
   BACK_OFFICE?: MicroServiceConfiguration;
   AUTH?: AuthConfig;
+  I18N_LANG?: string;
+  I18N_JSON_PATH?: string;
 }
 
 export interface AuthConfig {

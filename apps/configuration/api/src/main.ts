@@ -8,12 +8,11 @@ import { loadConfigJson, MicroServiceConfiguration } from '@rnm/shared';
 
 import { AppModule } from './app/app.module';
 
+// Load config.json file
+const config: MicroServiceConfiguration = loadConfigJson();
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-
-  // Load config.json file
-  const config: MicroServiceConfiguration = loadConfigJson();
 
   // // Setup tcp server for api
   const options: TcpOptions = {

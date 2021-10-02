@@ -1,11 +1,14 @@
 import { Row, Col, Form, Input, Button } from 'antd';
+import { useTranslation } from 'react-i18next';
 
 import { httpService } from '@rnm/ui';
 import { LoginDto } from '@rnm/model';
 
 import styles from './login.module.scss';
 
-export function Login() {
+function Login() {
+  const { t, i18n } = useTranslation();
+
   const onFinish = (user: LoginDto) => {
     httpService.post<LoginDto>('/api/auth/login', user).subscribe((result: LoginDto) => {
       console.log('Success:', result);
@@ -34,7 +37,7 @@ export function Login() {
               autoComplete="off"
             >
               <Form.Item
-                label="Username"
+                label={t('LOGIN.USERNAME')}
                 name="username"
                 rules={[{ required: true, message: 'Please input your username!' }]}
               >
@@ -42,7 +45,7 @@ export function Login() {
               </Form.Item>
 
               <Form.Item
-                label="Password"
+                label={t('LOGIN.PASSWORD')}
                 name="password"
                 rules={[{ required: true, message: 'Please input your password!' }]}
               >

@@ -18,5 +18,5 @@ export * from './lib/auth/strategies/jwt-refresh.strategy';
 
 export * from './lib/service/gateway/api/service/gateway-api-app.service';
 export * from './lib/service/dashboard/api/service/dashboard-api-app.service';
-export * from './lib/configuration/api/service/configuration-api-app.service';
+export * from './lib/service/configuration/api/service/configuration-api-app.service';
 export * from './lib/service/back-office/api/service/backoffice-api-app.service';

@@ -48,7 +48,7 @@
         "buildTarget": "gateway-web:build",
         "hmr": true,
         "proxyConfig": "apps/gateway/web/proxy.conf.json",
-        "port": 7000
+        "port": 9000
       },
       "configurations": {
         "production": {

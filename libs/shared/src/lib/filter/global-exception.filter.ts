@@ -1,13 +1,19 @@
 import { Request, Response } from 'express';
 import { ArgumentsHost, Catch, ExceptionFilter, HttpException, HttpStatus, Logger } from '@nestjs/common';
+import { TranslaterService } from '../i18n/translater.service';
 
 @Catch()
 export class GlobalExceptionFilter implements ExceptionFilter {
-  catch(exception: any, host: ArgumentsHost) {
+  constructor(private readonly translater: TranslaterService) { }
+
+  async catch(exception: any, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
-    const message = (exception as any).message;
+    let message = (exception as any).message;
+    if (message && message.key && message.args) {
+      message = await this.translater.message(message.key, message.args);
+    }
 
     Logger.error(message, (exception as any).stack, `${request.method} ${request.url}`);
 

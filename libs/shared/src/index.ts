@@ -14,3 +14,5 @@ export * from './lib/guard/role.guard';
 export * from './lib/interceptor/cookie.interceptor';
 export * from './lib/middleware/logger.middleware';
 export * from './lib/decorator/roles.decorator';
+export * from './lib/i18n/translater.service';
+export * from './lib/i18n/translater.module';

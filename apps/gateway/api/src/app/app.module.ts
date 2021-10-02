@@ -6,7 +6,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { getMetadataArgsStorage } from 'typeorm';
 
 import { GatewayApiAppService, EntitiesModule, AuthModule, AuthMiddleware } from '@rnm/domain';
-import { GlobalExceptionFilter, ormConfigService, RolesGuard } from '@rnm/shared';
+import { GlobalExceptionFilter, ormConfigService, RolesGuard, TranslaterModule } from '@rnm/shared';
 
 import { DashboardModule } from './dashboard/microservice/dashboard.module';
 import { ConfigurationModule } from './configuration/microservice/configuration.module';
@@ -30,6 +30,9 @@ import { UserController } from './user/user.controller';
       ...ormConfigService.getTypeOrmConfig(),
       entities: getMetadataArgsStorage().tables.map(tbl => tbl.target)
     }),
+    // i18n
+    TranslaterModule,
+    // TypeORM
     EntitiesModule,
     // MicroService
     DashboardModule,
@@ -64,7 +67,7 @@ export class AppModule implements NestModule {
         { path: '/dashboard*', method: RequestMethod.ALL },
         { path: '/configuration*', method: RequestMethod.ALL },
         { path: '/back-office*', method: RequestMethod.ALL },
-        { path: '/api*', method: RequestMethod.ALL },
+        // { path: '/api/*', method: RequestMethod.ALL },
       ]);
   }
 }
