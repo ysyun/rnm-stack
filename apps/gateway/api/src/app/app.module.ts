@@ -8,6 +8,7 @@ import { getMetadataArgsStorage } from 'typeorm';
 import { GatewayApiAppService, EntitiesModule, AuthModule, AuthMiddleware } from '@rnm/domain';
 import { GlobalExceptionFilter, ormConfigService, RolesGuard, TranslaterModule } from '@rnm/shared';
 
+import { environment } from '../environments/environment';
 import { DashboardModule } from './dashboard/microservice/dashboard.module';
 import { ConfigurationModule } from './configuration/microservice/configuration.module';
 import { BackOfficeModule } from './back-office/microservice/back-office.module';
@@ -61,6 +62,10 @@ import { UserController } from './user/user.controller';
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
+    if(!environment || !environment.production) {
+      return;
+    }
+
     consumer
       .apply(AuthMiddleware)
       .forRoutes(...[

@@ -1,0 +1,8 @@
+{
+  "/dashboard/api/*": {
+    "target": "http://localhost:8003",
+    "secure": false,
+    "changeOrigin": true,
+    "ws": true
+  }
+}

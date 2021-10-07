@@ -7,15 +7,13 @@
       "executor": "@nrwl/web:build",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "baseHref": "/back-office/",
         "outputPath": "dist/apps/back-office/web",
         "index": "apps/back-office/web/src/index.html",
         "main": "apps/back-office/web/src/main.tsx",
         "polyfills": "apps/back-office/web/src/polyfills.ts",
         "tsConfig": "apps/back-office/web/tsconfig.app.json",
-        "assets": [
-          "apps/back-office/web/src/favicon.ico",
-          "apps/back-office/web/src/assets"
-        ],
+        "assets": ["apps/back-office/web/src/favicon.ico", "apps/back-office/web/src/assets"],
         "styles": ["apps/back-office/web/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -26,6 +24,14 @@
             {
               "replace": "apps/back-office/web/src/environments/environment.ts",
               "with": "apps/back-office/web/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "apps/back-office/api/src/environments/config.ts",
+              "with": "apps/back-office/api/src/environments/config.prod.ts"
+            },
+            {
+              "replace": "apps/back-office/api/src/environments/orm-config.ts",
+              "with": "apps/back-office/api/src/environments/orm-config.prod.ts"
             }
           ],
           "optimization": true,
@@ -49,7 +55,10 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "back-office-web:build",
-        "hmr": true
+        "hmr": true,
+        "baseHref": "/back-office/",
+        "proxyConfig": "apps/back-office/web/proxy.conf.json",
+        "port": 9003
       },
       "configurations": {
         "production": {

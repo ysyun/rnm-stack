@@ -4,3 +4,5 @@
 export const environment = {
   production: false,
 };
+
+export const config = require('./config.json');

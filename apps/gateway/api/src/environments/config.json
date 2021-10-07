@@ -7,29 +7,23 @@
     "REFRESH_EXPIRED_ON": "7d"
   },
   "I18N_LANG": "en",
-  "I18N_JSON_PATH": "/public/assets/i18n/api/",
+  "I18N_JSON_PATH": "/assets/i18n/",
   "DASHBOARD": {
     "REVERSE_CONTEXT": "dashboard",
-    "REVERSE_ADDRESS": "http://127.0.0.1:8001",
-    "HTTP_PORT": 8001,
+    "REVERSE_ADDRESS": "http://127.0.0.1:9001",
     "TCP_HOST": "0.0.0.0",
-    "TCP_PORT": 8100,
-    "GLOBAL_API_PREFIX": "/api"
+    "TCP_PORT": 8100
   },
   "CONFIGURATION": {
     "REVERSE_CONTEXT": "configuration",
     "REVERSE_ADDRESS": "http://127.0.0.1:8002",
-    "HTTP_PORT": 8002,
     "TCP_HOST": "0.0.0.0",
-    "TCP_PORT": 8200,
-    "GLOBAL_API_PREFIX": "/api"
+    "TCP_PORT": 8200
   },
   "BACK_OFFICE": {
     "REVERSE_CONTEXT": "back-office",
     "REVERSE_ADDRESS": "http://127.0.0.1:8003",
-    "HTTP_PORT": 8003,
     "TCP_HOST": "0.0.0.0",
-    "TCP_PORT": 8300,
-    "GLOBAL_API_PREFIX": "/api"
+    "TCP_PORT": 8300
   }
 }

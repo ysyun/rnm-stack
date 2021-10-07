@@ -12,10 +12,10 @@ const config: any = loadConfigJson();
 @Module({
   imports: [
     I18nModule.forRoot({
-      fallbackLanguage: config.I18N_LANG,
+      fallbackLanguage: config.I18N_LANG || 'en',
       parser: I18nJsonParser,
       parserOptions: {
-        path: join(__dirname, config.I18N_JSON_PATH),
+        path: join(__dirname, config.I18N_JSON_PATH || '/assets/i18n/'),
       },
     })
   ],

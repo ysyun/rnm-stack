@@ -3,8 +3,6 @@ import { Suspense } from 'react';
 import styles from './app.module.scss';
 import Login from './login/login';
 
-import './core/i18n';
-
 const Loader = () => (
   <div className={styles.loading}>
     {/* <img src={logo} className="App-logo" alt="logo" /> */}

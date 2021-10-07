@@ -1,0 +1,10 @@
+{
+  "HOST": "localhost",
+  "PORT": 5432,
+  "USER": "iot",
+  "PASSWORD": "1",
+  "DATABASE": "rnm-stack",
+  "ENTITIES": ["libs/domain/src/lib/entities/**/*.entity.ts"],
+  "MODE": "dev",
+  "SYNC": true
+}

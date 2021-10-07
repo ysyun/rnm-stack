@@ -7,15 +7,13 @@
       "executor": "@nrwl/web:build",
       "outputs": ["{options.outputPath}"],
       "options": {
+        "baseHref": "/dashboard/",
         "outputPath": "dist/apps/configuration/web",
         "index": "apps/configuration/web/src/index.html",
         "main": "apps/configuration/web/src/main.tsx",
         "polyfills": "apps/configuration/web/src/polyfills.ts",
         "tsConfig": "apps/configuration/web/tsconfig.app.json",
-        "assets": [
-          "apps/configuration/web/src/favicon.ico",
-          "apps/configuration/web/src/assets"
-        ],
+        "assets": ["apps/configuration/web/src/favicon.ico", "apps/configuration/web/src/assets"],
         "styles": ["apps/configuration/web/src/styles.scss"],
         "scripts": [],
         "webpackConfig": "@nrwl/react/plugins/webpack"
@@ -26,6 +24,14 @@
             {
               "replace": "apps/configuration/web/src/environments/environment.ts",
               "with": "apps/configuration/web/src/environments/environment.prod.ts"
+            },
+            {
+              "replace": "apps/configuration/api/src/environments/config.ts",
+              "with": "apps/configuration/api/src/environments/config.prod.ts"
+            },
+            {
+              "replace": "apps/configuration/api/src/environments/orm-config.ts",
+              "with": "apps/configuration/api/src/environments/orm-config.prod.ts"
             }
           ],
           "optimization": true,
@@ -49,7 +55,10 @@
       "executor": "@nrwl/web:dev-server",
       "options": {
         "buildTarget": "configuration-web:build",
-        "hmr": true
+        "hmr": true,
+        "baseHref": "/configuration/",
+        "proxyConfig": "apps/configuration/web/proxy.conf.json",
+        "port": 9002
       },
       "configurations": {
         "production": {

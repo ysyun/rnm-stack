@@ -10,7 +10,7 @@ function Login() {
   const { t, i18n } = useTranslation();
 
   const onFinish = (user: LoginDto) => {
-    httpService.post<LoginDto>('/api/auth/login', user).subscribe((result: LoginDto) => {
+    httpService.post<any>('/api/auth/login', user).subscribe((result: any) => {
       console.log('Success:', result);
       // redirect index.html of dashboard application
       location.href = '/dashboard';
